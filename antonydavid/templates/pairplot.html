@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💧 Water Quality Pair Plot 📊</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #004080;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .plot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn-home {
+            background-color: #0073e6;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn-home:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Pairplot Visualization</h1>
+    <p class="text-muted">A pairplot shows relationships between different features in the dataset.</p>
+
+    <div class="plot-container">
+        <img src="{{ url_for('static', filename='pairplot.png') }}" alt="Pairplot Image" class="img-fluid" style="max-width: 90%; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.2);">
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn-home">🏠 Back to Home</a>
+
+</body>
+</html>

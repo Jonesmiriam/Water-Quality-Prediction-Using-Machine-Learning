@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Testing Centres</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <!-- Leaflet.js (for Interactive Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6a0dad; /* Purple Background */
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 500px;
+            width: 80%;
+            margin: auto;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #ffcc00; /* Yellow Button */
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💧 Water Quality Testing Centres</h1>
+    <p>Find certified water quality testing centres across India, Tamil Nadu, and Dindigul.</p>
+
+    <div id="map"></div>
+
+    <div class="button-container">
+        <a href="/" class="btn">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        // Initialize Map
+        var map = L.map('map').setView([20.5937, 78.9629], 5); // Center: India
+
+        // Add OpenStreetMap Tile Layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // List of Water Testing Centres
+        var centres = [
+            { name: "Central Water Testing Lab - Delhi", lat: 28.6139, lon: 77.2090 },
+            { name: "Chennai Water Quality Testing Lab", lat: 13.0827, lon: 80.2707 },
+            { name: "Dindigul Water Testing Centre", lat: 10.3673, lon: 77.9803 },
+            { name: "Tamil Nadu State Water Testing Lab", lat: 13.0633, lon: 80.2483 },
+            { name: "Kerala Water Analysis Lab", lat: 10.8505, lon: 76.2711 },
+            { name: "Mumbai Municipal Water Testing Lab", lat: 19.0760, lon: 72.8777 },
+            { name: "Bangalore Water Quality Lab", lat: 12.9716, lon: 77.5946 },
+            { name: "Hyderabad Water Testing Centre", lat: 17.3850, lon: 78.4867 },
+            { name: "Pune Water Purity Check Lab", lat: 18.5204, lon: 73.8567 },
+            { name: "Kolkata Water Quality Assurance Lab", lat: 22.5726, lon: 88.3639 },
+            { name: "Ahmedabad Safe Water Testing Centre", lat: 23.0225, lon: 72.5714 },
+            { name: "Jaipur Water Analysis Lab", lat: 26.9124, lon: 75.7873 },
+            { name: "Lucknow Water Testing Facility", lat: 26.8467, lon: 80.9462 },
+            { name: "Bhopal Water Quality Laboratory", lat: 23.2599, lon: 77.4126 },
+            { name: "Patna Drinking Water Test Centre", lat: 25.5941, lon: 85.1376 },
+            { name: "Chandigarh Water Testing Station", lat: 30.7333, lon: 76.7794 },
+            { name: "Nagpur Water Safety Lab", lat: 21.1458, lon: 79.0882 },
+            { name: "Indore Water Analysis Centre", lat: 22.7196, lon: 75.8577 },
+            { name: "Coimbatore Water Purity Lab", lat: 11.0168, lon: 76.9558 },
+            { name: "Madurai Water Testing Hub", lat: 9.9252, lon: 78.1198 },
+            { name: "Vijayawada Water Quality Testing", lat: 16.5062, lon: 80.6480 },
+            { name: "Goa Water Safety Research Lab", lat: 15.2993, lon: 74.1240 },
+            { name: "Mysore Water Testing Facility", lat: 12.2958, lon: 76.6394 },
+            { name: "Surat Drinking Water Analysis", lat: 21.1702, lon: 72.8311 },
+            { name: "Visakhapatnam Water Quality Hub", lat: 17.6868, lon: 83.2185 },
+            { name: "Vadodara Clean Water Testing Lab", lat: 22.3072, lon: 73.1812 },
+            { name: "Thiruvananthapuram Water Safety Lab", lat: 8.5241, lon: 76.9366 },
+            { name: "Ranchi Water Quality Control", lat: 23.3441, lon: 85.3096 },
+            { name: "Guwahati Safe Water Analysis", lat: 26.1445, lon: 91.7362 },
+            { name: "Shimla Water Purity Check", lat: 31.1048, lon: 77.1734 },
+            { name: "Udaipur Drinking Water Lab", lat: 24.5854, lon: 73.7125 },
+            { name: "Dindigul Local Water Testing", lat: 10.3654, lon: 77.9718 },
+            { name: "Ooty Safe Water Testing Centre", lat: 11.4102, lon: 76.6950 },
+            { name: "Pondicherry Water Quality Lab", lat: 11.9139, lon: 79.8145 },
+            { name: "Salem Water Purity Lab", lat: 11.6643, lon: 78.1460 },
+            { name: "Erode Clean Water Facility", lat: 11.3424, lon: 77.7280 },
+            { name: "Tiruchirappalli Water Safety", lat: 10.7905, lon: 78.7047 },
+            { name: "Hosur Drinking Water Lab", lat: 12.7401, lon: 77.8253 }
+        ];
+
+        // Add markers for all centres
+        centres.forEach(function(centre) {
+            L.marker([centre.lat, centre.lon])
+                .addTo(map)
+                .bindPopup("<b>" + centre.name + "</b>");
+        });
+    </script>
+
+</body>
+</html>

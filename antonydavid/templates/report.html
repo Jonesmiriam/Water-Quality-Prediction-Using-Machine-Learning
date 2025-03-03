@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Report 📜</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Light Water-Themed Background */
+        body {
+            background: linear-gradient(135deg, #dff6ff, #9eeaff);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Full Width Container */
+        .container-fluid {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            margin: auto;
+        }
+
+        h1 {
+            color: #004aad;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 30px;
+        }
+
+        p {
+            color: #444;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .btn-custom {
+            font-size: 18px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            margin: 10px;
+        }
+
+        /* Download Button Animation */
+        .btn-download {
+            background: #007bff;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .btn-download:active {
+            animation: pulse 0.2s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-home {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-home:hover {
+            background: #1e7e34;
+            transform: scale(1.05);
+        }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+            color: #004aad;
+        }
+
+        .info-box {
+            background: rgba(0, 123, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 16px;
+            color: #004aad;
+            text-align: left;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+        }
+
+        .info-box i {
+            margin-right: 8px;
+        }
+
+        /* Floating Water Bubbles */
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -10px;
+            background: rgba(0, 170, 255, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.6);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Random bubble sizes and positions */
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 5%; animation-duration: 6s; }
+        .bubble:nth-child(2) { width: 50px; height: 50px; left: 15%; animation-duration: 8s; }
+        .bubble:nth-child(3) { width: 35px; height: 35px; left: 30%; animation-duration: 5s; }
+        .bubble:nth-child(4) { width: 60px; height: 60px; left: 45%; animation-duration: 7s; }
+        .bubble:nth-child(5) { width: 30px; height: 30px; left: 60%; animation-duration: 4s; }
+        .bubble:nth-child(6) { width: 55px; height: 55px; left: 75%; animation-duration: 7s; }
+        .bubble:nth-child(7) { width: 40px; height: 40px; left: 85%; animation-duration: 9s; }
+        .bubble:nth-child(8) { width: 50px; height: 50px; left: 95%; animation-duration: 6s; }
+
+    </style>
+</head>
+<body>
+
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container-fluid">
+        <i class="fas fa-file-download icon"></i>
+        <h1>Generate Your Water Quality Report 📜</h1>
+        <p>Analyze key water parameters and get insights on potability and contamination levels.</p>
+
+        <div class="info-box">
+            <p><i class="fas fa-info-circle"></i> This report includes data on <b>pH, Hardness, Turbidity, Conductivity, and more.</b></p>
+            <p><i class="fas fa-chart-bar"></i> Get a summary of safe and unsafe water conditions.</p>
+            <p><i class="fas fa-tint"></i> Recommendations for water treatment if necessary.</p>
+            <p><i class="fas fa-file-pdf"></i> Download your report in PDF format for future reference.</p>
+        </div>
+
+        <br>
+
+        <a href="{{ url_for('generate_report') }}" class="btn btn-custom btn-download">
+            <i class="fas fa-file-download"></i> Download Report 📥
+        </a>
+
+        <a href="{{ url_for('index') }}" class="btn btn-custom btn-home">
+            <i class="fas fa-home"></i> Back to Home 🏠
+        </a>
+    </div>
+
+</body>
+</html>
